@@ -12,7 +12,7 @@ class BaseRecipeAttrViewSet(viewsets.GenericViewSet,
                             mixins.CreateModelMixin):
     """Base viewset for user owned recipe attributes"""
     authentication_classes = (TokenAuthentication,)
-    permission_classes =(IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
         """Return objects for the current authenticated user only"""
@@ -21,6 +21,7 @@ class BaseRecipeAttrViewSet(viewsets.GenericViewSet,
     def perform_create(self, serializer):
         """Create a new object"""
         serializer.save(user=self.request.user)
+
 
 class TagViewSet(BaseRecipeAttrViewSet):
     """Manage tags in the database"""
